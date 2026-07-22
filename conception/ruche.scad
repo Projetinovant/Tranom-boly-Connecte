@@ -75,4 +75,28 @@ union()
     }
     
     //cadres des fenetres
+
+    translate([0, profondeur/2 - fenetreL/2, 80])
+    difference()
+    {
+        cube([fenetreEp, fenetreL, fenetreH]);
+
+        translate([-1,5,5])
+        cube([fenetreEp+2, fenetreL-10, fenetreH-10]);
+    }
+    
+    translate([-fenetreEp, profondeur/2 - fenetreL/2, 80])
+    cube([fenetreEp, fenetreL, fenetreH]);
+    
+    translate([largeur-fenetreEp, profondeur/2 - fenetreL/2, 80])
+    difference()
+    {
+        cube([fenetreEp, fenetreL, fenetreH]);
+
+        translate([-1,5,5])
+        cube([fenetreEp+2, fenetreL-10, fenetreH-10]);
+    }
+    
+    translate([largeur, profondeur/2 - fenetreL/2, 80])
+    cube([fenetreEp, fenetreL, fenetreH]);
 }
