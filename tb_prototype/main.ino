@@ -2,11 +2,13 @@
 #include "detection.h"
 #include "analyse.h"
 #include "classification.h"
+#include "servo.h"
 
 void setup()
 {
     Serial.begin(115200);
     initMicrophone();
+    initServo();
     Serial.println("Tranom-boly");
     Serial.println("demarrer la detection sonore");
 
@@ -22,26 +24,7 @@ void loop()
     if(sonDetecte(valeur))
     {
         Caracteristiques son = analyserSon();
-        TypeInsecte type = classifierSon(son);
-
-        switch(type)
-        {
-            case POLLINISATEUR:
-                Serial.println("Pollinisateur probable");
-                break;
-
-            case AUXILIAIRE:
-                Serial.println("Auxiliaire probable");
-                break;
-
-            case BRUIT_PARASITE:
-                Serial.println("Bruit parasite");
-                break;
-
-            default:
-                Serial.println("Aucune classification");
-                break;
-        }
+       
         Serial.print("Maximum : ");
         Serial.println(son.maximum);
 
@@ -60,6 +43,30 @@ void loop()
 
         Serial.print("Nombre de pics : ");
         Serial.println(son.nombrePics);
+
+        TypeInsecte type = classifierSon(son);
+        switch(type)
+        {
+            case POLLINISATEUR:
+                Serial.println("Pollinisateur probable");
+                ouvrirFenetre();
+                break;
+
+            case AUXILIAIRE:
+                Serial.println("Auxiliaire probable");
+                ouvrirAngle(45);
+                break;
+
+            case BRUIT_PARASITE:
+                Serial.println("Bruit parasite");
+                fermerFenetre();
+                break;
+
+            default:
+                Serial.println("Aucune classification");
+                fermerFenetre();
+                break;
+        }
     }
     delay(100);
 }
