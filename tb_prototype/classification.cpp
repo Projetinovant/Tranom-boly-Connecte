@@ -1,17 +1,14 @@
 #include "classification.h"
 
-TypeInsecte classifierSon(CaracteristiquesSon son)
+TypeInsecte classifierSon(Caracteristiques son)
 {
-    // Bruit très violent
-    if(son.maximum > 1500 && son.nombrePics > 8)
+    if(son.maximum > 2000 && son.nombrePics > 15)
     {
         return BRUIT_PARASITE;
     }
-    // Son régulier d'insecte
-    if(son.moyenne > 100 && son.moyenne < 800 && son.variation < 120 && son.nombrePics < 5)
+    if(son.moyenne > 150 && son.moyenne < 600 && son.variation < 100 && son.nombrePics > 3 && son.nombrePics < 10)
     {
         return POLLINISATEUR;
     }
-    // Sinon
     return AUCUN;
 }

@@ -15,36 +15,38 @@ Caracteristiques analyserSon()
     int difference;
     int nombrePics;
     unsigned long debut;
-    const int seuil_pic = 100;
-    const int nombreMesures = 150;
+    const int seuil_pic = 10;
+    const int nombreMesures = 50;
     
     somme = 0;
-    maximum = 4095;
-    minimum = 0;
+    maximum = 0;
+    minimum = 4095;
     variation = 0;
     nombrePics = 0;
     ancienneValeur = lireAmplitude();
-    nombreMesures = 100;
     debut = millis();
 
     for(i = 0; i < nombreMesures; i++)
     {
         valeur = lireAmplitude();
         somme += valeur;
-        if(valeur > minimum)
+        if(valeur > maximum)
         {
             maximum = valeur;
         }
-        if(valeur < maximum)
+        if(valeur < minimum)
+        {
+          minimum = valeur;
+        }
         difference = abs(valeur - ancienneValeur); 
-        variation += difference
+        variation += difference;
 
-        if(difference > seuil_pic)
+        if(difference > seuil_pic && valeur > (somme / (i + 1) * 0.5))
         {
             nombrePics++;
         }
         ancienneValeur = valeur;
-        delay(5);
+        delay(2);
     }
     resultat.maximum = maximum;
     resultat.minimum = minimum;

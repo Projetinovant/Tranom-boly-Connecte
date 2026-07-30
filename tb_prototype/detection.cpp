@@ -3,7 +3,7 @@
 #include "microphone.h"
 
 int seuil = 0;
-const int marge = 100;
+const int marge = 80;
 void calibrer()
 {
     int i;
@@ -15,7 +15,7 @@ void calibrer()
 
     for(i = 0; i < 100; i++)
     {
-        valeur = lireSon();
+        valeur = lireAmplitude();
         if(valeur > maximum)
         {
             maximum = valeur;
@@ -29,5 +29,5 @@ void calibrer()
 
 bool sonDetecte(int valeur)
 {
-    return valeur > 100;
+    return valeur > seuil;
 }

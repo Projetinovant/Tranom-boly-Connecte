@@ -9,8 +9,7 @@ const int ANGLE_MIN = 0;
 const int ANGLE_MAX = 180;
 
 Servo servo;
-int angleActuel;
-angleActuel = ANGLE_FERME;
+int angleActuel= ANGLE_FERME;
 
 void initServo()
 {
@@ -88,6 +87,6 @@ void ouvrirAngle(int angle)
 }
 
 int angleFenetre()
-{
+{   
     return angleActuel;
 }

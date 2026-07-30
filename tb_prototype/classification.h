@@ -1,7 +1,7 @@
 #ifndef CLASSIFICATION_H
 #define CLASSIFICATION_H
 
-#include "analyseSon.h"
+#include "analyse.h"
 enum TypeInsecte
 {
     AUCUN,
@@ -10,6 +10,6 @@ enum TypeInsecte
     BRUIT_PARASITE
 };
 
-TypeInsecte classifierSon(CaracteristiquesSon son);
+TypeInsecte classifierSon(Caracteristiques son);
 
 #endif

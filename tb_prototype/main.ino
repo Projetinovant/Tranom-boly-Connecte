@@ -6,7 +6,7 @@
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(9600);
     initMicrophone();
     initServo();
     Serial.println("Tranom-boly");
@@ -18,10 +18,16 @@ void setup()
 
 void loop()
 {
-    int valeur;
-    valeur = lireAmplitude();
-    
-    if(sonDetecte(valeur))
+    int amplitude;
+    amplitude = lireAmplitude();
+    Serial.print("Amplitude : ");
+    Serial.println(amplitude);
+
+    if(sonDetecte(amplitude))
+    {
+        Serial.println("BRUIT DETECTE");
+    }
+    if(sonDetecte(amplitude))
     {
         Caracteristiques son = analyserSon();
        
